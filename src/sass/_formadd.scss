@@ -1,0 +1,33 @@
+.form-add {
+  padding: 2rem;
+  background-color: $color-blue-med;
+  display: grid;
+  grid-template-rows: 5;
+  gap: 6px;
+  label {
+    color: white;
+  }
+  input[type="text"] {
+    outline: none;
+    border: none;
+    padding: 4px 8px;
+    background-color: rgba(white, 0.66);
+    color: $color-blue-dark;
+    &::placeholder {
+      color: rgba($color-blue-dark, 0.66);
+    }
+  }
+  button[type="submit"] {
+    border: none;
+    outline: none;
+    width: auto;
+    margin: 0 auto;
+    margin-top: 1rem;
+    padding: 6px 24px;
+    padding-bottom: 2px;
+    color: white;
+    background-color: none;
+    background: none;
+    border-bottom: 3px solid white;
+  }
+}

@@ -1,0 +1,46 @@
+.single-item {
+  display: flex;
+  justify-content: space-between;
+  // border: 1px red solid;
+  width: 100%;
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid rgba($color-blue-dark, 0.25);
+  color: $color-blue-dark;
+  &:hover {
+    background-color: rgba($color-blue-med, 0.15);
+    transition: all 0.2s ease-out;
+  }
+  span.quantity {
+    margin-left: 1rem;
+    display: inline-block;
+    text-align: center;
+    // width: 32px;
+    background-color: rgba($color-blue-med, 0.15);
+    padding: 4px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  span.description {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 24px;
+    margin-left: 1rem;
+    margin-top: 4px;
+  }
+  span.marked {
+    position: absolute;
+    left: -8px;
+    top: -1rem;
+    height: calc(4rem - 2px);
+    width: 8px;
+    background-color: $color-blue-dark;
+  }
+}
+
+.item-info-left {
+  position: relative;
+  flex: 80%;
+  height: 100%;
+  cursor: pointer;
+}

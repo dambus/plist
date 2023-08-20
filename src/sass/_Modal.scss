@@ -1,0 +1,30 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 576px;
+  height: 100%;
+  background-color: rgba(#000, 0.5);
+}
+
+.modal-container {
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  background-color: $color-blue-med;
+  border-radius: 10px;
+}
+
+.close-modal {
+  padding: 0.5rem 1rem;
+  background-color: rgba($color-blue-light, 0.5);
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  box-shadow: -1px 1px 3px $color-blue-dark;
+  cursor: pointer;
+}
