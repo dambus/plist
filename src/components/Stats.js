@@ -12,11 +12,21 @@ export function Stats({ items }) {
 
   return (
     <footer className="stats">
-      <em>
+      <div className="footer-left">
+        <span className="number">{numItems}</span>
+        <br />
+        <span>Items on list</span>
+      </div>
+      <div className="footer-right">
+        <span className="number">{numPacked}</span>
+        <br />
+        <span>{`packed, thats ${percentage}%`}</span>
+      </div>
+      {/* <em>
         {percentage === 100
           ? "You got everything! Ready to go ✈️"
           : `You have ${numItems} items on your list, and you already packed ${numPacked} (${percentage}%)`}
-      </em>
+      </em> */}
     </footer>
   );
 }

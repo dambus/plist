@@ -4,6 +4,7 @@ import Toolbar from "./Toolbar";
 import Modal from "./Modal";
 import SingleItem from "./SingleItem";
 import FormAddNewItem from "./FormAddNewItem";
+import { Stats } from "./Stats";
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -44,7 +45,7 @@ export default function App() {
             onDeleteItem={handleDeleteItem}
             onToggleItem={handleToggleItem}
           />
-          <Stats />
+          <Stats items={items} />
         </div>
         <Modal
           onAddItem={handleAddItems}
@@ -62,13 +63,13 @@ export default function App() {
   );
 }
 
-function Stats() {
-  return (
-    <div className="stats">
-      <h3>Stats</h3>
-    </div>
-  );
-}
+// function Stats() {
+//   return (
+//     <div className="stats">
+//       <h3>Stats</h3>
+//     </div>
+//   );
+// }
 
 function PackList({ onToggleItem, onDeleteItem, sortedItems, sortBy, items }) {
   if (sortBy === "input") sortedItems = items;
