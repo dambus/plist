@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./Header";
 import Toolbar from "./Toolbar";
 import Modal from "./Modal";
@@ -7,10 +7,21 @@ import FormAddNewItem from "./FormAddNewItem";
 import { Stats } from "./Stats";
 
 export default function App() {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(() => {
+    const recItems = JSON.parse(localStorage.getItem("items"));
+    return recItems;
+  });
   const [openModal, setOpenModal] = useState(false);
   const [sortBy, setSortBy] = useState("input");
   let sortedItems;
+
+  useEffect(
+    function () {
+      localStorage.setItem("items", JSON.stringify(items));
+      console.log(`storing items: ${items}`);
+    },
+    [items]
+  );
 
   function handleAddItems(item) {
     setItems((items) => [...items, item]);
