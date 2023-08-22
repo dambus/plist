@@ -9,7 +9,11 @@ import { Stats } from "./Stats";
 export default function App() {
   const [items, setItems] = useState(() => {
     const recItems = JSON.parse(localStorage.getItem("items"));
-    return recItems;
+    if (recItems) {
+      return recItems;
+    } else {
+      return [];
+    }
   });
   const [openModal, setOpenModal] = useState(false);
   const [sortBy, setSortBy] = useState("input");
