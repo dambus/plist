@@ -1,9 +1,12 @@
-export function Stats({ items }) {
+export function Stats({ items, setOpenModal }) {
   if (!items.length)
     return (
-      <p className="stats">
-        <em>Start adding some items to your packing list</em>
-      </p>
+      <>
+        <footer className="stats">
+          <ButtonAddBase setOpenModal={setOpenModal} />
+          <em>Start adding some items to your packing list</em>
+        </footer>
+      </>
     );
 
   const numItems = items.length;
@@ -12,6 +15,11 @@ export function Stats({ items }) {
 
   return (
     <footer className="stats">
+      {/* <em>
+        {percentage === 100
+          ? "You got everything! Ready to go ✈️"
+          : `You have ${numItems} items on your list, and you already packed ${numPacked} (${percentage}%)`}
+      </em> */}
       <div className="footer-left">
         <span className="number">{numItems}</span>
         <br />
@@ -22,11 +30,16 @@ export function Stats({ items }) {
         <br />
         <span>{`packed, thats ${percentage}%`}</span>
       </div>
-      {/* <em>
-        {percentage === 100
-          ? "You got everything! Ready to go ✈️"
-          : `You have ${numItems} items on your list, and you already packed ${numPacked} (${percentage}%)`}
-      </em> */}
+
+      <ButtonAddBase setOpenModal={setOpenModal} />
     </footer>
+  );
+}
+
+function ButtonAddBase({ setOpenModal }) {
+  return (
+    <button onClick={() => setOpenModal(true)} className="btn-add-base">
+      +add
+    </button>
   );
 }

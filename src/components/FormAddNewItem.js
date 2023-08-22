@@ -20,7 +20,10 @@ export default function FormAddNewItem({ onAddItem, setOpenModal }) {
         <input
           type="text"
           value={quantity}
-          onChange={(e) => setQuantity(Number(e.target.value))}
+          onChange={function (e) {
+            if (isNaN(e.target.value)) return;
+            setQuantity(Number(e.target.value));
+          }}
           id="num-items"
           placeholder="how many items"
         />

@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import Toolbar from "./Toolbar";
 import Modal from "./Modal";
-import SingleItem from "./SingleItem";
 import FormAddNewItem from "./FormAddNewItem";
 import { Stats } from "./Stats";
+import PackList from "./PackList";
 
 export default function App() {
+  // Populating list items from local storage on app reload
   const [items, setItems] = useState(() => {
     const recItems = JSON.parse(localStorage.getItem("items"));
     if (recItems) {
@@ -19,17 +20,19 @@ export default function App() {
   const [sortBy, setSortBy] = useState("input");
   let sortedItems;
 
+  // adding current list items to local storage on every "items" array change
   useEffect(
     function () {
       localStorage.setItem("items", JSON.stringify(items));
-      console.log(`storing items: ${items}`);
     },
     [items]
   );
 
+  // handler functions
   function handleAddItems(item) {
     setItems((items) => [...items, item]);
   }
+
   function handleDeleteItem(id) {
     const confirmed = window.confirm("Really want to delete this item?");
     if (confirmed) setItems((items) => items.filter((item) => item.id !== id));
@@ -48,6 +51,7 @@ export default function App() {
       <div className="app-wrapper">
         <div className="main-content">
           <Header />
+
           <Toolbar
             setOpenModal={setOpenModal}
             sortBy={sortBy}
@@ -60,8 +64,10 @@ export default function App() {
             onDeleteItem={handleDeleteItem}
             onToggleItem={handleToggleItem}
           />
-          <Stats items={items} />
+
+          <Stats items={items} setOpenModal={setOpenModal} />
         </div>
+
         <Modal
           onAddItem={handleAddItems}
           btnContent={"cancel"}
@@ -75,39 +81,5 @@ export default function App() {
         </Modal>
       </div>
     </>
-  );
-}
-
-// function Stats() {
-//   return (
-//     <div className="stats">
-//       <h3>Stats</h3>
-//     </div>
-//   );
-// }
-
-function PackList({ onToggleItem, onDeleteItem, sortedItems, sortBy, items }) {
-  if (sortBy === "input") sortedItems = items;
-  if (sortBy === "description")
-    sortedItems = items
-      .slice()
-      .sort((a, b) => a.description.localeCompare(b.description));
-
-  if (sortBy === "packed")
-    sortedItems = items
-      .slice()
-      .sort((a, b) => Number(a.packed) - Number(b.packed));
-
-  return (
-    <ul className="item-list">
-      {sortedItems.map((item) => (
-        <SingleItem
-          item={item}
-          key={item.id}
-          onToggleItem={onToggleItem}
-          onDeleteitem={onDeleteItem}
-        />
-      ))}
-    </ul>
   );
 }

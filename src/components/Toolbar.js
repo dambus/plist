@@ -12,9 +12,11 @@ export default function Toolbar({ setOpenModal, sortBy, setSortBy }) {
       >
         <img src={sortBtn} alt="" />
       </button>
+
       <button className="toolbar-btn" onClick={() => setOpenModal(true)}>
         <img src={addBtn} alt="" />
       </button>
+
       {menuOpened && (
         <div className="sort-menu">
           <select
